@@ -66,8 +66,8 @@ Details for a response object are accesesed using the following methods:
 * `http_headers()` (associative array)
 * `http_status_code()` (integer)
 
-If debugging is enabled for the MMI_Curl class (using the pulbic `debug` property),
-inforation about the original request can be obtained with the `request()` method.
+If debugging is enabled for the MMI_Curl class (using the public `debug` property),
+information about the original request can be obtained using the `request()` method.
 The `request()` method returns an associative array with the following keys:
 
 * url (string)
