@@ -79,5 +79,5 @@ The `request()` method returns an associative array with the following keys:
 # Test Controllers
 2 simple test controllers are found in `classes/controller/test/curl`.  They can be accessed at:
 
-* _your-server_/test/curl/get
-* _your-server_/test/curl/mget
+* _<your-server>_/test/curl/get
+* _<your-server>_/test/curl/mget
