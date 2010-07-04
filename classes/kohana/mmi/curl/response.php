@@ -13,11 +13,6 @@
 class Kohana_MMI_Curl_Response
 {
 	/**
-	 * @var boolean turn debugging on?
-	 **/
-	public $debug;
-
-	/**
 	 * @var mixed the response body returned by cURL
 	 **/
 	protected $_body;
@@ -26,6 +21,11 @@ class Kohana_MMI_Curl_Response
 	 * @var array an associative array of the options returned by cURL
 	 **/
 	protected $_curl_info;
+
+	/**
+	 * @var boolean turn debugging on?
+	 **/
+	protected $_debug;
 
 	/**
 	 * @var string the error message returned by cURL
@@ -59,7 +59,7 @@ class Kohana_MMI_Curl_Response
 	 */
 	public function __construct()
 	{
-		$this->debug = (isset(Request::instance()->debug)) ? (Request::instance()->debug) : (FALSE);
+		$this->_debug = (isset(Request::instance()->debug)) ? (Request::instance()->debug) : (FALSE);
 	}
 
 	/**
@@ -84,6 +84,18 @@ class Kohana_MMI_Curl_Response
 	public function curl_info($value = NULL)
 	{
 		return $this->_get_set('_curl_info', $value, 'is_array');
+	}
+
+	/**
+	 * Get or set whether debugging is enabled.
+	 * This method is chainable when setting a value.
+	 *
+	 * @param	mixed	the value to set
+	 * @return	mixed
+	 */
+	public function debug($value = NULL)
+	{
+		return $this->_get_set('_debug', $value, 'is_bool');
 	}
 
 	/**
