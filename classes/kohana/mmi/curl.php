@@ -469,7 +469,7 @@ class Kohana_MMI_Curl
 		{
 			$status = curl_multi_exec($multi, $active);
 		}
-		while ($status == CURLM_CALL_MULTI_PERFORM || $active);
+		while ($status == CURLM_CALL_MULTI_PERFORM OR $active);
 
 		// Retrieve the responses
 		$responses = array();
@@ -553,7 +553,7 @@ class Kohana_MMI_Curl
 			$options[CURLOPT_PROXY] = $host;
 			if (isset($proxy['user']) AND isset($proxy['pass']))
 			{
-				curl_setopt($ch, CURLOPT_PROXYUSERPWD, $this->proxy['user'] . ':' . $this->proxy['pass']);
+				curl_setopt($ch, CURLOPT_PROXYUSERPWD, $this->proxy['user'].':'.$this->proxy['pass']);
 			}
 		}
 
