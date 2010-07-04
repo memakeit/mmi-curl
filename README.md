@@ -29,11 +29,10 @@ where each element in the `$requests` array is an associative array containing o
 * http_headers
 * curl_options
 
-The `mexec` method requests can contain the following key:
+The `mexec` method allows parallel requests to be made using different HTTP methods by supporting the additional key:
 
 * method
 
-The `mexec` method allows parallel requests to be made using different HTTP methods.
 Each array of request settings can be associated with a key (recommended for easier extraction of results):
  > $requests = array
  > (
