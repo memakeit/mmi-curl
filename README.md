@@ -1,7 +1,7 @@
-Me Make It cURL Module
-======================
+# Me Make It cURL Module
 
-This module provides a wrapper for cURL HTTP requests.  It is based on Ryan Parman's requestcore: <http://github.com/skyzyx/requestcore>
+This module provides a wrapper for cURL HTTP requests.  It is based on
+Ryan Parman's requestcore: <http://github.com/skyzyx/requestcore>
 
 The various HTTP methods map to the following class methods:
 
@@ -22,18 +22,21 @@ Parallel requests are supported using the following methods:
 * `mpost($requests)`
 * `mput($requests)`
 
-where each element in the `$requests` array is an associative array containing one or more of the following keys:
+where each element in the `$requests` array is an associative array containing
+one or more of the following keys:
 
-* url
-* parms
-* http_headers
-* curl_options
+* url (string)
+* parms (associative array)
+* http_headers (associative array)
+* curl_options (associative array)
 
-The `mexec` method allows parallel requests to be made using different HTTP methods by supporting the additional key:
+The `mexec` method allows parallel requests to be made using different HTTP
+methods (GET, POST, etc) by supporting the additional key:
 
-* method
+* method (string)
 
-Each array of request settings can be associated with a key (recommended for easier extraction of results):
+Using `mexec` requests as an example, each array of request settings can be
+associated with a key (recommended for easier extraction of results):
 
 	$requests = array
 	(
@@ -50,5 +53,24 @@ or the keys can be ommited:
 	);
 
 
-## Responses ##
-Results are returned as instances of MMI_Curl_Response.  The
+# Responses
+Results are returned as instances of the `MMI_Curl_Response` class.  For parallel
+requests, an array of response objects is returned.
+
+Details for a response object are accesesed using the following methods:
+
+* `body()` (string)
+* `curl_info()` (associative array)
+* `error_msg()` (string)
+* `error_num()` (integer)
+* `http_headers()` (associative array)
+* `http_status_code()` (integer)
+
+If debugging is enabled for the MMI_Curl class (using the pulbic `debug` property),
+inforation about the original request can be obtained with the `request()` method.
+The `request()` method returns an associative array with the following keys:
+
+* url (string)
+* parms (associative array)
+* http_method (string)
+* curl_options (associative array)
