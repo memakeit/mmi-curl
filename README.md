@@ -34,15 +34,21 @@ The `mexec` method allows parallel requests to be made using different HTTP meth
 * method
 
 Each array of request settings can be associated with a key (recommended for easier extraction of results):
- > $requests = array
- > (
- >> 'memakeit' => array('method' => 'GET', 'url' => 'user/show/memakeit'),
- >> 'shadowhand' => array('method' => 'GET', 'url' => 'user/show/shadowhand'),
- > );
-	 *
-	 * or the keys can be ommited:
-	 *		$requests = array
-	 *		(
-	 *			array('method' => 'GET', 'url' => 'user/show/memakeit'),
-	 *			array('method' => 'GET', 'url' => 'user/show/shadowhand'),
-	 *		);
+
+	$requests = array
+	(
+		'memakeit' => array('method' => 'GET', 'url' => 'user/show/memakeit'),
+		'shadowhand' => array('method' => 'GET', 'url' => 'user/show/shadowhand'),
+	);
+
+or the keys can be ommited:
+
+	$requests = array
+	(
+		array('method' => 'GET', 'url' => 'user/show/memakeit'),
+		array('method' => 'GET', 'url' => 'user/show/shadowhand'),
+	);
+
+
+## Responses ##
+Results are returned as instances of MMI_Curl_Response.  The
