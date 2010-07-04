@@ -79,6 +79,18 @@ class Kohana_MMI_Curl
 	}
 
 	/**
+	 * Get or set whether debugging is enabled.
+	 * This method is chainable when setting a value.
+	 *
+	 * @param	mixed	the value to set
+	 * @return	mixed
+	 */
+	public function debug($value = NULL)
+	{
+		return $this->_get_set('debug', $value, 'is_bool');
+	}
+
+	/**
 	 * Get or set the proxy details used by cURL requests.
 	 * This method is chainable when setting a value.
 	 *
