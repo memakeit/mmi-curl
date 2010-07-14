@@ -1,4 +1,4 @@
-# Me Make It cURL Module
+# MMI cURL Module
 
 This module provides a wrapper for cURL HTTP requests.  It is based on
 Ryan Parman's requestcore: <http://github.com/skyzyx/requestcore>
