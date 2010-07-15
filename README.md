@@ -1,5 +1,9 @@
 # MMI cURL Module
 
+**Dependencies:**
+
+* mmi-core
+
 This module provides a wrapper for cURL HTTP requests.  It is based on
 Ryan Parman's requestcore: <http://github.com/skyzyx/requestcore>
 
