@@ -65,7 +65,7 @@ class Kohana_MMI_Curl
 		if ( ! function_exists('curl_init'))
 		{
 			$msg = 'The php_curl extension is required';
-			$this->_log_error(__METHOD__, __LINE__, $msg);
+			MMI_Log::log_error(__METHOD__, __LINE__, $msg);
 			throw new Kohana_Exception($msg);
 		}
 
@@ -485,7 +485,7 @@ class Kohana_MMI_Curl
 			}
 			else
 			{
-				$this->_log_error(__METHOD__, __LINE__, 'Multi cURL error for URL:'.$url.'. Error number: '.curl_errno($handle).'. Error message: '.curl_error($handle));
+				MMI_Log::log_error(__METHOD__, __LINE__, 'Multi cURL error for URL:'.$url.'. Error number: '.curl_errno($handle).'. Error message: '.curl_error($handle));
 			}
 
 			// Close each cURL handle
@@ -638,7 +638,7 @@ class Kohana_MMI_Curl
 	{
 		if ( ! is_resource($ch))
 		{
-			$this->_log_error(__METHOD__, __LINE__, 'Unable to establish cURL connection for URL: '.$url);
+			MMI_Log::log_error(__METHOD__, __LINE__, 'Unable to establish cURL connection for URL: '.$url);
 			return FALSE;
 		}
 
@@ -646,13 +646,13 @@ class Kohana_MMI_Curl
 		{
 			// Cannot connect
 			$response = FALSE;
-			$this->_log_error(__METHOD__, __LINE__, 'Unable to establish cURL connection for URL: '.$url);
+			MMI_Log::log_error(__METHOD__, __LINE__, 'Unable to establish cURL connection for URL: '.$url);
 		}
 		elseif ($response === TRUE)
 		{
 			// No response data
 			$response = NULL;
-			$this->_log_info(__METHOD__, __LINE__, 'No cURL data for URL: '.$url);
+			MMI_Log::log_info(__METHOD__, __LINE__, 'No cURL data for URL: '.$url);
 		}
 		else
 		{
@@ -712,32 +712,6 @@ class Kohana_MMI_Curl
 			$http_headers[strtolower($parts[0])] = $parts[1];
 		}
 		return $http_headers;
-	}
-
-	/**
-	 * Log a formatted error message.
-	 *
-	 * @param	string	the method name
-	 * @param	string	the line number
-	 * @param	string	the error message
-	 * @return	void
-	 */
-	protected function _log_error($method, $line, $msg)
-	{
-		Kohana::$log->add(Kohana::ERROR, '['.$method.' @ line '.$line.'] '.$msg)->write();
-	}
-
-	/**
-	 * Log a formatted informational message.
-	 *
-	 * @param	string	the method name
-	 * @param	string	the line number
-	 * @param	string	the informational message
-	 * @return	void
-	 */
-	public function _log_info($method, $line, $msg)
-	{
-		Kohana::$log->add(Kohana::INFO, '['.$method.' @ line '.$line.'] '.$msg)->write();
 	}
 
 	/**
