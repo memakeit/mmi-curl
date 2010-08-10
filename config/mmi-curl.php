@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-// cURL configuration
+// MMI cURL configuration
 return array
 (
 	'curl_options' => array

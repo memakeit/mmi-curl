@@ -72,10 +72,9 @@ class Kohana_MMI_Curl
 		$this->_debug = (isset(Request::instance()->debug)) ? (Request::instance()->debug) : (FALSE);
 
 		// Load cURL options and HTTP headers from the config file
-		$config = self::get_config(TRUE);
-		$this->_curl_options = Arr::get($config, 'curl_options', array());
-		$this->_http_headers = Arr::get($config, 'http_headers', array());
-		unset($config);
+		$config = self::get_config();
+		$this->_curl_options = $config->get('curl_options', array());
+		$this->_http_headers = $config->get('http_headers', array());
 	}
 
 	/**
@@ -157,8 +156,7 @@ class Kohana_MMI_Curl
 	 */
 	public function reset_curl_options()
 	{
-		$config = self::get_config(TRUE);
-		$this->_curl_options = Arr::get($config, 'curl_options', array());
+		$this->_curl_options = self::get_config()->get('curl_options', array());
 		return $this;
 	}
 
@@ -224,8 +222,7 @@ class Kohana_MMI_Curl
 	 */
 	public function reset_http_headers()
 	{
-		$config = self::get_config(TRUE);
-		$this->_curl_options = Arr::get($config, 'http_headers', array());
+		$this->_http_headers = self::get_config()->get('http_headers', array());
 		return $this;
 	}
 
@@ -756,7 +753,7 @@ class Kohana_MMI_Curl
 	 */
 	public static function get_config($as_array = FALSE)
 	{
-		(self::$_config === NULL) AND self::$_config = Kohana::config('curl');
+		(self::$_config === NULL) AND self::$_config = Kohana::config('mmi-curl');
 		$config = self::$_config;
 		if ($as_array)
 		{
