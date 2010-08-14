@@ -1,11 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-// Test route
+// Test routes
 if (Kohana::$environment !== Kohana::PRODUCTION)
 {
-	Route::set('test/curl', 'test/curl/<controller>(/<action>)')
+	Route::set('mmi/curl/test', 'mmi/curl/test/<controller>(/<action>)', array('controller' => '.+'))
 	->defaults(array
 	(
-		'directory'	=> 'test/curl',
+		'directory'	=> 'mmi/curl/test',
 	));
 }

@@ -7,7 +7,7 @@
  * @copyright	(c) 2010 Me Make It
  * @license		http://www.memakeit.com/license
  */
-class Controller_Test_Curl_Get extends Controller
+class Controller_MMI_Curl_Test_Get extends Controller
 {
 	/**
 	 * @var boolean turn debugging on?
@@ -29,4 +29,4 @@ class Controller_Test_Curl_Get extends Controller
 		}
 		$this->request->response = Kohana::debug($response);
 	}
-} // End Controller_Test_Curl_Get
+} // End Controller_MMI_Curl_Test_Get
