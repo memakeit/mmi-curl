@@ -3,7 +3,7 @@
 // Test routes
 if (Kohana::$environment !== Kohana::PRODUCTION)
 {
-	Route::set('mmi/curl/test', 'mmi/curl/test/<controller>(/<action>)', array('controller' => '.+'))
+	Route::set('mmi/curl/test', 'mmi/curl/test/<controller>(/<action>)')
 	->defaults(array
 	(
 		'directory'	=> 'mmi/curl/test',
