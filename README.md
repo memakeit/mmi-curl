@@ -1,12 +1,13 @@
 # MMI cURL Module
 
-**Dependencies:**
-
-* mmi-core
-
 This module provides a wrapper for cURL HTTP requests.  It is based on
-Ryan Parman's requestcore: <http://github.com/skyzyx/requestcore>
+Ryan Parman's [requestcore](http://github.com/skyzyx/requestcore)
 
+## Dependencies
+
+* [mmi-core](http://github.com/memakeit/mmi-core)
+
+## Usage
 The various HTTP methods map to the following class methods:
 
 * `delete($url, $parms = NULL)`
@@ -57,7 +58,7 @@ or the keys can be ommited:
 	);
 
 
-# Responses
+## Responses
 Results are returned as instances of the `MMI_Curl_Response` class.  For parallel
 requests, an array of response objects is returned.
 
@@ -79,9 +80,9 @@ The `request()` method returns an associative array with the following keys:
 * http_method (string)
 * curl_options (associative array)
 
+## Test Controllers
+Simple test controllers are located in `classes/controller/mmi/curl/test`.
+They can be accessed at:
 
-# Test Controllers
-Simple test controllers are found in `classes/controller/test/curl`.  They can be accessed at:
-
-* _<your-server>_/test/curl/get
-* _<your-server>_/test/curl/mget
+* _<your-server>_/mmi/curl/test/get
+* _<your-server>_/mmi/curl/test/mget
