@@ -777,7 +777,8 @@ class Kohana_MMI_Curl
 
 	/**
 	 * Get the cURL version information.
-	 * If a key is specified, the corresponding value is returned.  Otherwise an associative array of all version information is returned.
+	 * If a key is specified, the corresponding value is returned.
+	 * Otherwise an associative array of all version information is returned.
 	 *
 	 * @param	string	the key used to retrieve an individual value
 	 * @return	mixed
