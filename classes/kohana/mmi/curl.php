@@ -86,7 +86,11 @@ class Kohana_MMI_Curl
 	 */
 	public function debug($value = NULL)
 	{
-		return $this->_get_set('_debug', $value, 'is_bool');
+		if (func_num_args() === 0)
+		{
+			return $this->_debug;
+		}
+		return $this->_set('_debug', $value, 'is_bool');
 	}
 
 	/**
@@ -99,11 +103,15 @@ class Kohana_MMI_Curl
 	 */
 	public function proxy($value = NULL)
 	{
+		if (func_num_args() === 0)
+		{
+			return $this->_proxy;
+		}
 		if (is_string($value))
 		{
 			$value = parse_url($value);
 		}
-		return $this->_get_set('_proxy', $value, 'is_array');
+		return $this->_set('_proxy', $value, 'is_array');
 	}
 
 	/**
@@ -169,7 +177,11 @@ class Kohana_MMI_Curl
 	 */
 	public function curl_options($options = NULL)
 	{
-		return $this->_get_set('_curl_options', $options, 'is_array');
+		if (func_num_args() === 0)
+		{
+			return $this->_curl_options;
+		}
+		return $this->_set('_curl_options', $options, 'is_array');
 	}
 
 	/**
@@ -235,7 +247,11 @@ class Kohana_MMI_Curl
 	 */
 	public function http_headers($options = NULL)
 	{
-		return $this->_get_set('_http_headers', $options, 'is_array');
+		if (func_num_args() === 0)
+		{
+			return $this->_http_headers;
+		}
+		return $this->_set('_http_headers', $options, 'is_array');
 	}
 
 	/**
@@ -712,27 +728,24 @@ class Kohana_MMI_Curl
 	}
 
 	/**
-	 * Get or set a class property.
-	 * This method is chainable when setting a value.
+	 * Set a class property.  This method is chainable.
 	 *
 	 * @param	string	the name of the class property to set
 	 * @param	mixed	the value to set
 	 * @param	string	the name of the data verification method
-	 * @return	mixed
+	 * @return	MMI_Curl
 	 */
-	protected function _get_set($name, $value = NULL, $verify_method = NULL)
+	protected function _set($name, $value = NULL, $verify_method = NULL)
 	{
 		if ( ! empty($verify_method) AND $verify_method($value))
 		{
 			$this->$name = $value;
-			return $this;
 		}
 		elseif (isset($value))
 		{
 			$this->$name = $value;
-			return $this;
 		}
-		return $this->$name;
+		return $this;
 	}
 
 	/**

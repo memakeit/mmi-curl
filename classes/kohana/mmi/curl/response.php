@@ -71,7 +71,11 @@ class Kohana_MMI_Curl_Response
 	 */
 	public function body($value = NULL)
 	{
-		return $this->_get_set('_body', $value);
+		if (func_num_args() === 0)
+		{
+			return $this->_body;
+		}
+		return $this->_set('_body', $value);
 	}
 
 	/**
@@ -83,7 +87,11 @@ class Kohana_MMI_Curl_Response
 	 */
 	public function curl_info($value = NULL)
 	{
-		return $this->_get_set('_curl_info', $value, 'is_array');
+		if (func_num_args() === 0)
+		{
+			return $this->_curl_info;
+		}
+		return $this->_set('_curl_info', $value, 'is_array');
 	}
 
 	/**
@@ -95,7 +103,11 @@ class Kohana_MMI_Curl_Response
 	 */
 	public function debug($value = NULL)
 	{
-		return $this->_get_set('_debug', $value, 'is_bool');
+		if (func_num_args() === 0)
+		{
+			return $this->_debug;
+		}
+		return $this->_set('_debug', $value, 'is_bool');
 	}
 
 	/**
@@ -107,7 +119,11 @@ class Kohana_MMI_Curl_Response
 	 */
 	public function error_msg($value = NULL)
 	{
-		return $this->_get_set('_error_msg', $value, 'is_string');
+		if (func_num_args() === 0)
+		{
+			return $this->_error_msg;
+		}
+		return $this->_set('_error_msg', $value, 'is_string');
 	}
 
 	/**
@@ -119,7 +135,11 @@ class Kohana_MMI_Curl_Response
 	 */
 	public function error_num($value = NULL)
 	{
-		return $this->_get_set('_error_num', $value, 'is_int');
+		if (func_num_args() === 0)
+		{
+			return $this->_error_num;
+		}
+		return $this->_set('_error_num', $value, 'is_int');
 	}
 
 	/**
@@ -131,7 +151,11 @@ class Kohana_MMI_Curl_Response
 	 */
 	public function http_headers($value = NULL)
 	{
-		return $this->_get_set('_http_headers', $value, 'is_array');
+		if (func_num_args() === 0)
+		{
+			return $this->_http_headers;
+		}
+		return $this->_set('_http_headers', $value, 'is_array');
 	}
 
 	/**
@@ -143,7 +167,11 @@ class Kohana_MMI_Curl_Response
 	 */
 	public function http_status_code($value = NULL)
 	{
-		return $this->_get_set('_http_status_code', $value, 'is_int');
+		if (func_num_args() === 0)
+		{
+			return $this->_http_status_code;
+		}
+		return $this->_set('_http_status_code', $value, 'is_int');
 	}
 
 	/**
@@ -155,7 +183,11 @@ class Kohana_MMI_Curl_Response
 	 */
 	public function request($value = NULL)
 	{
-		return $this->_get_set('_request', $value, 'is_array');
+		if (func_num_args() === 0)
+		{
+			return $this->_request;
+		}
+		return $this->_set('_request', $value, 'is_array');
 	}
 
 	/**
@@ -169,26 +201,23 @@ class Kohana_MMI_Curl_Response
 	}
 
 	/**
-	 * Get or set a class property.
-	 * This method is chainable when setting a value.
+	 * Set a class property.  This method is chainable.
 	 *
 	 * @param	string	the name of the class property to set
 	 * @param	mixed	the value to set
 	 * @param	string	the name of the data verification method
-	 * @return	mixed
+	 * @return	MMI_Curl
 	 */
-	protected function _get_set($name, $value = NULL, $verify_method = NULL)
+	protected function _set($name, $value = NULL, $verify_method = NULL)
 	{
 		if ( ! empty($verify_method) AND $verify_method($value))
 		{
 			$this->$name = $value;
-			return $this;
 		}
 		elseif (isset($value))
 		{
 			$this->$name = $value;
-			return $this;
 		}
-		return $this->$name;
+		return $this;
 	}
 } // End Kohana_MMI_Curl_Response
