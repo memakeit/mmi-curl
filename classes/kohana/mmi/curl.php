@@ -737,11 +737,11 @@ class Kohana_MMI_Curl
 	 */
 	protected function _set($name, $value = NULL, $verify_method = NULL)
 	{
-		if ( ! empty($verify_method) AND $verify_method($value))
+		if (empty($verify_method))
 		{
 			$this->$name = $value;
 		}
-		elseif (isset($value))
+		elseif ($verify_method($value))
 		{
 			$this->$name = $value;
 		}
