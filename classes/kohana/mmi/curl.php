@@ -556,6 +556,13 @@ class Kohana_MMI_Curl
 		$options = Arr::merge($this->_curl_options, $curl_options);
 		$options[CURLOPT_URL] = $url;
 
+		set_time_limit
+		(
+			intval(Arr::get($options, CURLOPT_CONNECTTIMEOUT, 5)) +
+			intval(Arr::get($options, CURLOPT_TIMEOUT, 30)) +
+			5
+		);
+
 		// Configure the proxy connection, if necessary
 		$proxy = $this->_proxy;
 		if (is_array($proxy) AND count($proxy) > 0)
