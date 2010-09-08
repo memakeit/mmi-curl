@@ -729,7 +729,7 @@ class Kohana_MMI_Curl
 		foreach ($headers as $header)
 		{
 			$parts = explode(': ', $header);
-			$http_headers[strtolower($parts[0])] = $parts[1];
+			$http_headers[$parts[0]] = $parts[1];
 		}
 		return $http_headers;
 	}
