@@ -6,6 +6,6 @@ if (Kohana::$environment !== Kohana::PRODUCTION)
 	Route::set('mmi/curl/test', 'mmi/curl/test/<controller>(/<action>)')
 	->defaults(array
 	(
-		'directory'	=> 'mmi/curl/test',
+		'directory' => 'mmi/curl/test',
 	));
 }
