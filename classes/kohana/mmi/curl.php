@@ -605,24 +605,24 @@ class Kohana_MMI_Curl
 			case MMI_HTTP::METHOD_HEAD:
 				$options[CURLOPT_CUSTOMREQUEST] = MMI_HTTP::METHOD_HEAD;
 				$options[CURLOPT_NOBODY] = TRUE;
-				break;
+			break;
 
 			case MMI_HTTP::METHOD_GET:
 				if ( ! empty($parms) AND strpos($url, '?') === FALSE)
 				{
 					$options[CURLOPT_URL] = $url.'?'.$parms;
 				}
-				break;
+			break;
 
 			case MMI_HTTP::METHOD_POST:
 				$options[CURLOPT_POST] = TRUE;
 				$options[CURLOPT_POSTFIELDS] = $parms;
-				break;
+			break;
 
 			default:
 				$options[CURLOPT_CUSTOMREQUEST] = $http_method;
 				$options[CURLOPT_POSTFIELDS] = $parms;
-				break;
+			break;
 		}
 
 		// Set the cURL options
@@ -826,7 +826,7 @@ class Kohana_MMI_Curl
 					{
 						$value = $value[1];
 					}
-					break;
+				break;
 			}
 			$curl_options[$option_name] = $value;
 		}
