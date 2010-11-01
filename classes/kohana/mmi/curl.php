@@ -65,7 +65,10 @@ class Kohana_MMI_Curl
 		if ( ! function_exists('curl_init'))
 		{
 			$msg = 'The php_curl extension is required';
-			MMI_Log::log_error(__METHOD__, __LINE__, $msg);
+			if (class_exists('MMI_Log'))
+			{
+				MMI_Log::log_error(__METHOD__, __LINE__, $msg);
+			}
 			throw new Kohana_Exception($msg);
 		}
 
@@ -498,7 +501,10 @@ class Kohana_MMI_Curl
 			}
 			else
 			{
-				MMI_Log::log_error(__METHOD__, __LINE__, 'Multi cURL error for URL:'.$url.'. Error number: '.curl_errno($handle).'. Error message: '.curl_error($handle));
+				if (class_exists('MMI_Log'))
+				{
+					MMI_Log::log_error(__METHOD__, __LINE__, 'Multi cURL error for URL:'.$url.'. Error number: '.curl_errno($handle).'. Error message: '.curl_error($handle));
+				}
 			}
 
 			// Close each cURL handle
@@ -658,7 +664,10 @@ class Kohana_MMI_Curl
 	{
 		if ( ! is_resource($ch))
 		{
-			MMI_Log::log_error(__METHOD__, __LINE__, 'Unable to establish cURL connection for URL: '.$url);
+			if (class_exists('MMI_Log'))
+			{
+				MMI_Log::log_error(__METHOD__, __LINE__, 'Unable to establish cURL connection for URL: '.$url);
+			}
 			return FALSE;
 		}
 
@@ -666,13 +675,19 @@ class Kohana_MMI_Curl
 		{
 			// Cannot connect
 			$response = FALSE;
-			MMI_Log::log_error(__METHOD__, __LINE__, 'Unable to establish cURL connection for URL: '.$url);
+			if (class_exists('MMI_Log'))
+			{
+				MMI_Log::log_error(__METHOD__, __LINE__, 'Unable to establish cURL connection for URL: '.$url);
+			}
 		}
 		elseif ($response === TRUE)
 		{
 			// No response data
 			$response = NULL;
-			MMI_Log::log_info(__METHOD__, __LINE__, 'No cURL data for URL: '.$url);
+			if (class_exists('MMI_Log'))
+			{
+				MMI_Log::log_info(__METHOD__, __LINE__, 'No cURL data for URL: '.$url);
+			}
 		}
 		else
 		{
