@@ -4,7 +4,7 @@ This module is a wrapper for cURL HTTP requests.
 
 ## Dependencies
 
-* [mmi-core](http://github.com/memakeit/mmi-core) (only for test controllers)
+* [mmi-util](http://github.com/memakeit/mmi-util) (only for test controllers)
 
 ## Documentation
 
