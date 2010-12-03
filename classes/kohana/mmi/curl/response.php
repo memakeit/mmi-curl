@@ -59,7 +59,7 @@ class Kohana_MMI_Curl_Response
 	 */
 	public function __construct()
 	{
-		$this->_debug = (isset(Request::instance()->debug)) ? (Request::instance()->debug) : (FALSE);
+		$this->_debug = class_exists('MMI_Request') ? MMI_Request::debug() : FALSE;
 	}
 
 	/**

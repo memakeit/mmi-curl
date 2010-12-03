@@ -72,7 +72,7 @@ class Kohana_MMI_Curl
 			throw new Kohana_Exception($msg);
 		}
 
-		$this->_debug = (isset(Request::instance()->debug)) ? (Request::instance()->debug) : (FALSE);
+		$this->_debug = class_exists('MMI_Request') ? MMI_Request::debug() : FALSE;
 
 		// Load cURL options and HTTP headers from the config file
 		$config = self::get_config();
