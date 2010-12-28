@@ -1,4 +1,4 @@
-# MMI cURL Module
+# MMI Curl Module
 
 This module is a wrapper for cURL HTTP requests.
 
