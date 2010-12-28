@@ -4,7 +4,7 @@ This module is a wrapper for cURL HTTP requests.
 
 ## Dependencies
 
-* [mmi-util](http://github.com/memakeit/mmi-util) (only for test controllers)
+* [mmi-util](https://github.com/memakeit/mmi-util) (only for test controllers)
 
 ## Documentation
 
@@ -16,4 +16,4 @@ Test controllers are located in `classes/controller/mmi/curl/test`.
 
 ## Inspiration &amp; Credits
 
-* Ryan Parman's [requestcore](http://github.com/skyzyx/requestcore)
+* Ryan Parman's [requestcore](https://github.com/skyzyx/requestcore)
