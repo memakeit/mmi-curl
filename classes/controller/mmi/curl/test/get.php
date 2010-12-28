@@ -2,26 +2,22 @@
 /**
  * Test controller for the get method.
  *
- * @package		MMI API
+ * @package		MMI Curl
  * @author		Me Make It
  * @copyright	(c) 2010 Me Make It
  * @license		http://www.memakeit.com/license
  */
-class Controller_MMI_Curl_Test_Get extends Controller
+class Controller_MMI_Curl_Test_Get extends Controller_MMI_Curl_Test
 {
-	/**
-	 * @var boolean turn debugging on?
-	 **/
-	public $debug = TRUE;
-
 	/**
 	 * Test the get method.
 	 *
+	 * @access	public
 	 * @return	void
 	 */
 	public function action_index()
 	{
-		$response = MMI_Curl::factory()->debug($this->debug)->get('http://github.com/api/v2/json/user/show/memakeit');
+		$response = MMI_Curl::factory()->debug($this->debug)->get('https://github.com/api/v2/json/user/show/memakeit');
 		if ($response instanceof MMI_Curl_Response)
 		{
 			// Decode the JSON output
