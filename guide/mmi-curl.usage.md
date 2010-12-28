@@ -2,13 +2,13 @@
 
 The various HTTP methods map to the following class methods:
 
-* `delete($url, $parms = NULL)`
-* `get($url, $parms = NULL)`
-* `head($url, $parms = NULL)`
-* `post($url, $parms = NULL)`
-* `put($url, $parms = NULL)`
+* `delete($url, $params = NULL)`
+* `get($url, $params = NULL)`
+* `head($url, $params = NULL)`
+* `post($url, $params = NULL)`
+* `put($url, $params = NULL)`
 
-where `$url` is a string and `$parms` is an associative array of request parameters.
+where `$url` is a string and `$params` is an associative array of request parameters.
 
 Parallel requests are supported using the following methods:
 
@@ -23,7 +23,7 @@ where each element in the `$requests` array is an associative array containing
 one or more of the following keys:
 
 * url (string)
-* parms (associative array)
+* params (associative array)
 * http_headers (associative array)
 * curl_options (associative array)
 

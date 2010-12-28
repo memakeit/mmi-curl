@@ -17,6 +17,6 @@ information about the original request can be obtained using the `request()` met
 The `request()` method returns an associative array with the following keys:
 
 * url (string)
-* parms (associative array)
+* params (associative array)
 * http_method (string)
 * curl_options (associative array)
