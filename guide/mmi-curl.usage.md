@@ -1,4 +1,4 @@
-# Usage
+# MMI Curl Usage
 
 The various HTTP methods map to the following class methods:
 
@@ -19,7 +19,7 @@ Parallel requests are supported using the following methods:
 * `mpost($requests)`
 * `mput($requests)`
 
-where each element in the `$requests` array is an associative array containing
+where each element in the `$requests` array is itself an associative array containing
 one or more of the following keys:
 
 * url (string)
@@ -32,7 +32,7 @@ methods (GET, POST, etc) by supporting the additional array key:
 
 * method (string)
 
-Using `mexec` requests as an example, each array of request settings can be
+Using `mexec` as an example, each array of request settings can be
 associated with a key (recommended for easier extraction of results):
 
 	$requests = array
@@ -40,6 +40,7 @@ associated with a key (recommended for easier extraction of results):
 		'memakeit' => array('method' => 'GET', 'url' => 'user/show/memakeit'),
 		'shadowhand' => array('method' => 'GET', 'url' => 'user/show/shadowhand'),
 	);
+	$responses = MMI_Curl::factory()->mexec($requests);
 
 or the keys can be ommited:
 
@@ -48,3 +49,4 @@ or the keys can be ommited:
 		array('method' => 'GET', 'url' => 'user/show/memakeit'),
 		array('method' => 'GET', 'url' => 'user/show/shadowhand'),
 	);
+	$responses = MMI_Curl::factory()->mexec($requests);
