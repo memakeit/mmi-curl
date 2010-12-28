@@ -3,12 +3,12 @@
  * Object representation of a cURL response.
  * This class is based on Ryan Parman's requestcore library.
  *
- * @package		MMI API
+ * @package		MMI Curl
  * @author		Me Make It
  * @copyright	(c) 2010 Me Make It
  * @copyright	(c) 2006-2010 Ryan Parman, Foleeo Inc., and contributors. All rights reserved.
  * @license		http://www.memakeit.com/license
- * @link		http://github.com/skyzyx/requestcore
+ * @link		https://github.com/skyzyx/requestcore
  */
 class Kohana_MMI_Curl_Response
 {
@@ -21,11 +21,6 @@ class Kohana_MMI_Curl_Response
 	 * @var array an associative array of the options returned by cURL
 	 **/
 	protected $_curl_info;
-
-	/**
-	 * @var boolean turn debugging on?
-	 **/
-	protected $_debug;
 
 	/**
 	 * @var string the error message returned by cURL
@@ -51,16 +46,6 @@ class Kohana_MMI_Curl_Response
 	 * @var array an associative array containing details of the last cURL request
 	 **/
 	protected $_request;
-
-	/**
-	 * Initialize debugging (using the Request instance).
-	 *
-	 * @return	void
-	 */
-	public function __construct()
-	{
-		$this->_debug = class_exists('MMI_Request') ? MMI_Request::debug() : FALSE;
-	}
 
 	/**
 	 * Get or set the response body returned by cURL.
@@ -92,22 +77,6 @@ class Kohana_MMI_Curl_Response
 			return $this->_curl_info;
 		}
 		return $this->_set('_curl_info', $value, 'is_array');
-	}
-
-	/**
-	 * Get or set whether debugging is enabled.
-	 * This method is chainable when setting a value.
-	 *
-	 * @param	mixed	the value to set
-	 * @return	mixed
-	 */
-	public function debug($value = NULL)
-	{
-		if (func_num_args() === 0)
-		{
-			return $this->_debug;
-		}
-		return $this->_set('_debug', $value, 'is_bool');
 	}
 
 	/**

@@ -3,12 +3,12 @@
  * cURL helper.
  * This class is based on Ryan Parman's requestcore library.
  *
- * @package		MMI API
+ * @package		MMI Curl
  * @author		Me Make It
  * @copyright	(c) 2010 Me Make It
  * @copyright	(c) 2006-2010 Ryan Parman, Foleeo Inc., and contributors. All rights reserved.
  * @license		http://www.memakeit.com/license
- * @link		http://github.com/skyzyx/requestcore
+ * @link		https://github.com/skyzyx/requestcore
  */
 class Kohana_MMI_Curl
 {
@@ -58,6 +58,8 @@ class Kohana_MMI_Curl
 	 * Load the configuration settings.
 	 *
 	 * @return	void
+	 * @uses	MMI_Log::log_error
+	 * @uses	MMI_Request::debug
 	 */
 	public function __construct()
 	{
@@ -264,9 +266,9 @@ class Kohana_MMI_Curl
 	 * @param	array	an associative array of request parameters
 	 * @return	MMI_Curl_Response
 	 */
-	public function delete($url, $parms = NULL)
+	public function delete($url, $params = NULL)
 	{
-		return $this->_exec($url, $parms, MMI_HTTP::METHOD_DELETE);
+		return $this->_exec($url, $params, MMI_HTTP::METHOD_DELETE);
 	}
 
 	/**
@@ -276,9 +278,9 @@ class Kohana_MMI_Curl
 	 * @param	array	an associative array of request parameters
 	 * @return	MMI_Curl_Response
 	 */
-	public function get($url, $parms = NULL)
+	public function get($url, $params = NULL)
 	{
-		return $this->_exec($url, $parms, MMI_HTTP::METHOD_GET);
+		return $this->_exec($url, $params, MMI_HTTP::METHOD_GET);
 	}
 
 	/**
@@ -288,9 +290,9 @@ class Kohana_MMI_Curl
 	 * @param	array	an associative array of request parameters
 	 * @return	MMI_Curl_Response
 	 */
-	public function head($url, $parms = NULL)
+	public function head($url, $params = NULL)
 	{
-		return $this->_exec($url, $parms, MMI_HTTP::METHOD_HEAD);
+		return $this->_exec($url, $params, MMI_HTTP::METHOD_HEAD);
 	}
 
 	/**
@@ -300,9 +302,9 @@ class Kohana_MMI_Curl
 	 * @param	array	an associative array of request parameters
 	 * @return	MMI_Curl_Response
 	 */
-	public function post($url, $parms = NULL)
+	public function post($url, $params = NULL)
 	{
-		return $this->_exec($url, $parms, MMI_HTTP::METHOD_POST);
+		return $this->_exec($url, $params, MMI_HTTP::METHOD_POST);
 	}
 
 	/**
@@ -312,9 +314,9 @@ class Kohana_MMI_Curl
 	 * @param	array	an associative array of request parameters
 	 * @return	MMI_Curl_Response
 	 */
-	public function put($url, $parms = NULL)
+	public function put($url, $params = NULL)
 	{
-		return $this->_exec($url, $parms, MMI_HTTP::METHOD_PUT);
+		return $this->_exec($url, $params, MMI_HTTP::METHOD_PUT);
 	}
 
 	/**
@@ -332,7 +334,7 @@ class Kohana_MMI_Curl
 
 	/**
 	 * Make multiple GET requests.
-	 * Each request is an associative array containing a URL (key = url) and optional request parameters, HTTP headers and cURL options (keys = parms, http_headers, curl_options).
+	 * Each request is an associative array containing a URL (key = url) and optional request parameters, HTTP headers and cURL options (keys = params, http_headers, curl_options).
 	 * Each array of request settings can be associated with a key (recommended for easier extraction of results):
 	 *		$requests = array
 	 *		(
@@ -396,7 +398,7 @@ class Kohana_MMI_Curl
 
 	/**
 	 * Make multiple HTTP requests.
-	 * Each request is an associative array containing an HTTP method (key = method), a URL (key = url) and optional request parameters, HTTP headers and cURL options (keys = parms, http_headers, curl_options).
+	 * Each request is an associative array containing an HTTP method (key = method), a URL (key = url) and optional request parameters, HTTP headers and cURL options (keys = params, http_headers, curl_options).
 	 * Each array of request settings can be associated with a key (recommended for easier extraction of results):
 	 *		$requests = array
 	 *		(
@@ -427,13 +429,13 @@ class Kohana_MMI_Curl
 	 * @param	string	the HTTP method
 	 * @return	MMI_Curl_Response
 	 */
-	protected function _exec($url, $parms = array(), $http_method = MMI_HTTP::METHOD_GET)
+	protected function _exec($url, $params = array(), $http_method = MMI_HTTP::METHOD_GET)
 	{
 		// Init cURL and set options
-		$ch = $this->_init_curl($url, $parms, $http_method);
+		$ch = $this->_init_curl($url, $params, $http_method);
 
 		// Execute the request and process the response
-		$response = $this->_process_response($ch, curl_exec($ch), $url, $parms);
+		$response = $this->_process_response($ch, curl_exec($ch), $url, $params);
 
 		// Close the cURL handle
 		curl_close($ch);
@@ -450,6 +452,7 @@ class Kohana_MMI_Curl
 	 * @param	array	the request details (URL, request parameters, HTTP headers, and cURL options)
 	 * @param	string	the HTTP method
 	 * @return	array
+	 * @uses	MMI_Log::log_error
 	 */
 	protected function _mexec($requests, $http_method = NULL)
 	{
@@ -466,11 +469,11 @@ class Kohana_MMI_Curl
 		$handles = array();
 		foreach ($requests as $id => $request)
 		{
-			foreach (array('url', 'parms', 'method', 'http_headers', 'curl_options') as $var)
+			foreach (array('url', 'params', 'method', 'http_headers', 'curl_options') as $var)
 			{
 				$$var = Arr::get($request, $var);
 			}
-			$handles[$id] = $this->_init_curl($url, $parms, $method, $http_headers, $curl_options);
+			$handles[$id] = $this->_init_curl($url, $params, $method, $http_headers, $curl_options);
 		}
 
 		// Create a cURL multi-handle and add the cURL handles to the multi-handle
@@ -496,14 +499,14 @@ class Kohana_MMI_Curl
 			if (intval(curl_errno($handle)) === CURLE_OK)
 			{
 				// Process the response
-				$parms = Arr::get($request, 'parms');
-				$responses[$id] = $this->_process_response($handle, curl_multi_getcontent($handle), $url, $parms);
+				$params = Arr::get($request, 'params');
+				$responses[$id] = $this->_process_response($handle, curl_multi_getcontent($handle), $url, $params);
 			}
 			else
 			{
 				if (class_exists('MMI_Log'))
 				{
-					MMI_Log::log_error(__METHOD__, __LINE__, 'Multi cURL error for URL:'.$url.'. Error number: '.curl_errno($handle).'. Error message: '.curl_error($handle));
+					MMI_Log::log_error(__METHOD__, __LINE__, 'Multi cURL error for URL: '.$url.'. Error number: '.curl_errno($handle).'. Error message: '.curl_error($handle));
 				}
 			}
 
@@ -530,7 +533,7 @@ class Kohana_MMI_Curl
 	 * @param	array	an associative array of custom cURL options (to be merged with the defaults)
 	 * @return	resource
 	 */
-	protected function _init_curl($url, $parms = array(), $http_method = MMI_HTTP::METHOD_GET, $http_headers = array(), $curl_options = array())
+	protected function _init_curl($url, $params = array(), $http_method = MMI_HTTP::METHOD_GET, $http_headers = array(), $curl_options = array())
 	{
 		// Create a cURL handle
 		$ch = curl_init();
@@ -540,18 +543,18 @@ class Kohana_MMI_Curl
 		if ($this->_debug)
 		{
 			$request['url'] = $url;
-			$temp = $parms;
-			if ( ! is_array($parms))
+			$temp = $params;
+			if ( ! is_array($params))
 			{
-				parse_str($parms, $temp);
+				parse_str($params, $temp);
 			}
-			$request['parms'] = $temp;
+			$request['params'] = $temp;
 		}
 
 		// Encode the request parameters
-		if (is_array($parms) AND count($parms) > 0 AND Arr::is_assoc($parms))
+		if (is_array($params) AND count($params) > 0 AND Arr::is_assoc($params))
 		{
-			$parms = http_build_query($parms);
+			$params = http_build_query($params);
 		}
 
 		// Configure the cURL options
@@ -595,12 +598,12 @@ class Kohana_MMI_Curl
 			$http_headers = array();
 		}
 		$http_headers = Arr::merge($this->_http_headers, $http_headers);
-		if (isset($http_headers) AND count($http_headers) > 0)
+		if (is_array($http_headers) AND count($http_headers) > 0)
 		{
 			$headers = array();
 			foreach ($http_headers as $name => $value)
 			{
-				$headers[] = $name.': '.$value;
+				$headers[] = "{$name}: {$value}";
 			}
 			$options[CURLOPT_HTTPHEADER] = $headers;
 		}
@@ -614,20 +617,20 @@ class Kohana_MMI_Curl
 			break;
 
 			case MMI_HTTP::METHOD_GET:
-				if ( ! empty($parms) AND strpos($url, '?') === FALSE)
+				if ( ! empty($params) AND strpos($url, '?') === FALSE)
 				{
-					$options[CURLOPT_URL] = $url.'?'.$parms;
+					$options[CURLOPT_URL] = $url.'?'.$params;
 				}
 			break;
 
 			case MMI_HTTP::METHOD_POST:
 				$options[CURLOPT_POST] = TRUE;
-				$options[CURLOPT_POSTFIELDS] = $parms;
+				$options[CURLOPT_POSTFIELDS] = $params;
 			break;
 
 			default:
 				$options[CURLOPT_CUSTOMREQUEST] = $http_method;
-				$options[CURLOPT_POSTFIELDS] = $parms;
+				$options[CURLOPT_POSTFIELDS] = $params;
 			break;
 		}
 
@@ -641,7 +644,7 @@ class Kohana_MMI_Curl
 		if ($this->_debug)
 		{
 			// Save the request details for debugging
-			$request_id = md5(serialize($url.$parms));
+			$request_id = md5(serialize($url.$params));
 			$request['http_method'] = $http_method;
 			$request['curl_options'] = self::debug_curl_options($options);
 			$this->_requests[$request_id] = $request;
@@ -659,14 +662,16 @@ class Kohana_MMI_Curl
 	 * @param	string		the request URL
 	 * @param	array		an associative array of request parameters
 	 * @return	mixed
+	 * @uses	MMI_Log::log_error
+	 * @uses	MMI_Log::log_info
 	 */
-	protected function _process_response($ch, $response, $url, $parms = array())
+	protected function _process_response($ch, $response, $url, $params = array())
 	{
 		if ( ! is_resource($ch))
 		{
 			if (class_exists('MMI_Log'))
 			{
-				MMI_Log::log_error(__METHOD__, __LINE__, 'Unable to establish cURL connection for URL: '.$url);
+				MMI_Log::log_error(__METHOD__, __LINE__, "Unable to establish cURL connection for URL: {$url}");
 			}
 			return FALSE;
 		}
@@ -677,7 +682,7 @@ class Kohana_MMI_Curl
 			$response = FALSE;
 			if (class_exists('MMI_Log'))
 			{
-				MMI_Log::log_error(__METHOD__, __LINE__, 'Unable to establish cURL connection for URL: '.$url);
+				MMI_Log::log_error(__METHOD__, __LINE__, "Unable to establish cURL connection for URL: {$url}");
 			}
 		}
 		elseif ($response === TRUE)
@@ -686,7 +691,7 @@ class Kohana_MMI_Curl
 			$response = NULL;
 			if (class_exists('MMI_Log'))
 			{
-				MMI_Log::log_info(__METHOD__, __LINE__, 'No cURL data for URL: '.$url);
+				MMI_Log::log_info(__METHOD__, __LINE__, "No cURL data for URL: {$url}");
 			}
 		}
 		else
@@ -710,11 +715,11 @@ class Kohana_MMI_Curl
 			// Save the request details for debugging
 			if ($this->_debug)
 			{
-				if (is_array($parms) AND count($parms) > 0 AND Arr::is_assoc($parms))
+				if (is_array($params) AND count($params) > 0 AND Arr::is_assoc($params))
 				{
-					$parms = http_build_query($parms);
+					$params = http_build_query($params);
 				}
-				$request_id = md5(serialize($url.$parms));
+				$request_id = md5(serialize($url.$params));
 				$request = Arr::get($this->_requests, $request_id);
 				if (array_key_exists($request_id, $this->_requests))
 				{
@@ -790,12 +795,11 @@ class Kohana_MMI_Curl
 	public static function get_config($as_array = FALSE)
 	{
 		(self::$_config === NULL) AND self::$_config = Kohana::config('mmi-curl');
-		$config = self::$_config;
 		if ($as_array)
 		{
-			$config = $config->as_array();
+			return self::$_config->as_array();
 		}
-		return $config;
+		return self::$_config;
 	}
 
 	/**
