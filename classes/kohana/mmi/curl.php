@@ -57,6 +57,7 @@ class Kohana_MMI_Curl
 	 * Initialize debugging (using the Request instance).
 	 * Load the configuration settings.
 	 *
+	 * @access	public
 	 * @return	void
 	 * @uses	MMI_Log::log_error
 	 * @uses	MMI_Request::debug
@@ -86,6 +87,7 @@ class Kohana_MMI_Curl
 	 * Get or set whether debugging is enabled.
 	 * This method is chainable when setting a value.
 	 *
+	 * @access	public
 	 * @param	mixed	the value to set
 	 * @return	mixed
 	 */
@@ -102,6 +104,7 @@ class Kohana_MMI_Curl
 	 * Get or set the proxy details used by cURL requests.
 	 * This method is chainable when setting a value.
 	 *
+	 * @access	public
 	 * @param	mixed	an associative array of proxy settings or
 	 *					a proxy url string in the following format: 'proxy://user:pass@hostname:port'
 	 * @return	mixed
@@ -123,6 +126,7 @@ class Kohana_MMI_Curl
 	 * Add a cURL option.
 	 * This method is chainable.
 	 *
+	 * @access	public
 	 * @param	string	the option name
 	 * @param	mixed	the option value
 	 * @return	MMI_Curl
@@ -137,6 +141,7 @@ class Kohana_MMI_Curl
 	 * Remove a cURL option.
 	 * This method is chainable.
 	 *
+	 * @access	public
 	 * @param	string	the option name
 	 * @return	MMI_Curl
 	 */
@@ -153,6 +158,7 @@ class Kohana_MMI_Curl
 	 * Remove all the cURL options.
 	 * This method is chainable.
 	 *
+	 * @access	public
 	 * @return	MMI_Curl
 	 */
 	public function clear_curl_options()
@@ -165,6 +171,7 @@ class Kohana_MMI_Curl
 	 * Reset the cURL options to the configuration defaults.
 	 * This method is chainable.
 	 *
+	 * @access	public
 	 * @return	MMI_Curl
 	 */
 	public function reset_curl_options()
@@ -177,6 +184,7 @@ class Kohana_MMI_Curl
 	 * Get or set the cURL options. Set operations overwrite the existing cURL options.
 	 * This method is chainable when setting a value.
 	 *
+	 * @access	public
 	 * @param	array	an associative array of cURL options
 	 * @return	mixed
 	 */
@@ -193,6 +201,7 @@ class Kohana_MMI_Curl
 	 * Add an HTTP header to the cURL request.
 	 * This method is chainable.
 	 *
+	 * @access	public
 	 * @param	string	the header name
 	 * @param	mixed	the header value
 	 * @return	MMI_Curl
@@ -207,6 +216,7 @@ class Kohana_MMI_Curl
 	 * Remove an HTTP header from the cURL request.
 	 * This method is chainable.
 	 *
+	 * @access	public
 	 * @param	string	the header name
 	 * @return	MMI_Curl
 	 */
@@ -223,6 +233,7 @@ class Kohana_MMI_Curl
 	 * Remove all the HTTP headers.
 	 * This method is chainable.
 	 *
+	 * @access	public
 	 * @return	MMI_Curl
 	 */
 	public function clear_http_headers()
@@ -235,6 +246,7 @@ class Kohana_MMI_Curl
 	 * Reset the HTTP headers to the configuration defaults.
 	 * This method is chainable.
 	 *
+	 * @access	public
 	 * @return	MMI_Curl
 	 */
 	public function reset_http_headers()
@@ -247,6 +259,7 @@ class Kohana_MMI_Curl
 	 * Get or set the HTTP headers for the cURL request. Set operations overwrite the existing HTTP headers.
 	 * This method is chainable when setting a value.
 	 *
+	 * @access	public
 	 * @param	array	an associative array of HTTP headers
 	 * @return	mixed
 	 */
@@ -262,6 +275,7 @@ class Kohana_MMI_Curl
 	/**
 	 * Make a DELETE request.
 	 *
+	 * @access	public
 	 * @param	string	the URL
 	 * @param	array	an associative array of request parameters
 	 * @return	MMI_Curl_Response
@@ -274,6 +288,7 @@ class Kohana_MMI_Curl
 	/**
 	 * Make a GET request.
 	 *
+	 * @access	public
 	 * @param	string	the URL
 	 * @param	array	an associative array of request parameters
 	 * @return	MMI_Curl_Response
@@ -286,6 +301,7 @@ class Kohana_MMI_Curl
 	/**
 	 * Make a HEAD request.
 	 *
+	 * @access	public
 	 * @param	string	the URL
 	 * @param	array	an associative array of request parameters
 	 * @return	MMI_Curl_Response
@@ -298,6 +314,7 @@ class Kohana_MMI_Curl
 	/**
 	 * Make a POST request.
 	 *
+	 * @access	public
 	 * @param	string	the URL
 	 * @param	array	an associative array of request parameters
 	 * @return	MMI_Curl_Response
@@ -310,6 +327,7 @@ class Kohana_MMI_Curl
 	/**
 	 * Make a PUT request.
 	 *
+	 * @access	public
 	 * @param	string	the URL
 	 * @param	array	an associative array of request parameters
 	 * @return	MMI_Curl_Response
@@ -323,6 +341,7 @@ class Kohana_MMI_Curl
 	 * Make multiple DELETE requests.
 	 * See the mget method for the format of the requests data.
 	 *
+	 * @access	public
 	 * @see		mget
 	 * @param	array	the request details (URL, request parameters, HTTP headers, and cURL options)
 	 * @return	array
@@ -349,6 +368,7 @@ class Kohana_MMI_Curl
 	 *			array('url' => 'user/show/shadowhand'),
 	 *		);
 	 *
+	 * @access	public
 	 * @param	array	the request details (URL, request parameters, HTTP headers, and cURL options)
 	 * @return	array
 	 */
@@ -361,6 +381,7 @@ class Kohana_MMI_Curl
 	 * Make multiple HEAD requests.
 	 * See the mget method for the format of the requests data.
 	 *
+	 * @access	public
 	 * @see		mget
 	 * @param	array	the request details (URL, request parameters, HTTP headers, and cURL options)
 	 * @return	array
@@ -374,6 +395,7 @@ class Kohana_MMI_Curl
 	 * Make multiple POST requests.
 	 * See the mget method for the format of the requests data.
 	 *
+	 * @access	public
 	 * @see		mget
 	 * @param	array	the request details (URL, request parameters, HTTP headers, and cURL options)
 	 * @return	array
@@ -387,6 +409,7 @@ class Kohana_MMI_Curl
 	 * Make multiple PUT requests.
 	 * See the mget method for the format of the requests data.
 	 *
+	 * @access	public
 	 * @see		mget
 	 * @param	array	the request details (URL, request parameters, HTTP headers, and cURL options)
 	 * @return	array
@@ -413,6 +436,7 @@ class Kohana_MMI_Curl
 	 *			array('method' => 'GET', 'url' => 'user/show/shadowhand'),
 	 *		);
 	 *
+	 * @access	public
 	 * @param	array	the request details (HTTP method, URL, request parameters, HTTP headers, and cURL options)
 	 * @return	array
 	 */
@@ -424,6 +448,7 @@ class Kohana_MMI_Curl
 	/**
 	 * Execute a cURL request.
 	 *
+	 * @access	protected
 	 * @param	string	the URL
 	 * @param	array	the request parameters
 	 * @param	string	the HTTP method
@@ -448,6 +473,7 @@ class Kohana_MMI_Curl
 	/**
 	 * Execute multiple cURL requests in parallel.
 	 *
+	 * @access	protected
 	 * @param	string	the URL
 	 * @param	array	the request details (URL, request parameters, HTTP headers, and cURL options)
 	 * @param	string	the HTTP method
@@ -526,6 +552,7 @@ class Kohana_MMI_Curl
 	/**
 	 * Create a cURL handle and configure the cURL options (including custom HTTP request headers).
 	 *
+	 * @access	protected
 	 * @param	string	the URL
 	 * @param	array	an associative array of request parameters
 	 * @param	string	the HTTP method
@@ -657,6 +684,7 @@ class Kohana_MMI_Curl
 	/**
 	 * Process the cURL response.
 	 *
+	 * @access	protected
 	 * @param	resource	the cURL handle
 	 * @param	string		the cURL response
 	 * @param	string		the request URL
@@ -734,6 +762,7 @@ class Kohana_MMI_Curl
 	/**
 	 * Parse the HTTP headers returned by cURL.
 	 *
+	 * @access	protected
 	 * @param	string	the HTTP headers
 	 * @return	array
 	 */
@@ -758,6 +787,7 @@ class Kohana_MMI_Curl
 	 * Set a class property.
 	 * This method is chainable.
 	 *
+	 * @access	protected
 	 * @param	string	the name of the class property to set
 	 * @param	mixed	the value to set
 	 * @param	string	the name of the data verification method
@@ -779,6 +809,7 @@ class Kohana_MMI_Curl
 	/**
 	 * Create a cURL instance.
 	 *
+	 * @access	public
 	 * @return	MMI_Curl
 	 */
 	public static function factory()
@@ -789,6 +820,7 @@ class Kohana_MMI_Curl
 	/**
 	 * Get the configuration settings.
 	 *
+	 * @access	public
 	 * @param	boolean	return the configuration as an array?
 	 * @return	mixed
 	 */
@@ -807,6 +839,7 @@ class Kohana_MMI_Curl
 	 * If a key is specified, the corresponding value is returned.
 	 * Otherwise an associative array of all version information is returned.
 	 *
+	 * @access	public
 	 * @param	string	the key used to retrieve an individual value
 	 * @return	mixed
 	 */
@@ -824,6 +857,7 @@ class Kohana_MMI_Curl
 	/**
 	 * Debug the cURL options by replacing the cURL numeric constants with their 'CURLOPT_' constant names.
 	 *
+	 * @access	public
 	 * @param	array	the cURL options to debug
 	 * @return	array
 	 */
@@ -855,6 +889,7 @@ class Kohana_MMI_Curl
 	/**
 	 * Get an associative array mapping each cURL constant to a string representation of its name.
 	 *
+	 * @access	public
 	 * @return	array
 	 */
 	public static function get_curl_constants_map()
@@ -866,6 +901,7 @@ class Kohana_MMI_Curl
 	/**
 	 * Get an associative array mapping each cURL constant to a string representation of its name.
 	 *
+	 * @access	protected
 	 * @return	array
 	 */
 	protected static function _get_curl_constants_map()
