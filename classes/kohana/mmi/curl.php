@@ -579,7 +579,7 @@ class Kohana_MMI_Curl
 		}
 
 		// Encode the request parameters
-		if (is_array($params) AND count($params) > 0 AND Arr::is_assoc($params))
+		if (is_array($params) AND ! empty($params) AND Arr::is_assoc($params))
 		{
 			$params = http_build_query($params);
 		}
@@ -601,7 +601,7 @@ class Kohana_MMI_Curl
 
 		// Configure the proxy connection, if necessary
 		$proxy = $this->_proxy;
-		if (is_array($proxy) AND count($proxy) > 0)
+		if (is_array($proxy) AND ! empty($proxy))
 		{
 			$options[CURLOPT_HTTPPROXYTUNNEL] = TRUE;
 			$host = $proxy['host'];
@@ -625,7 +625,7 @@ class Kohana_MMI_Curl
 			$http_headers = array();
 		}
 		$http_headers = Arr::merge($this->_http_headers, $http_headers);
-		if (is_array($http_headers) AND count($http_headers) > 0)
+		if (is_array($http_headers) AND ! empty($http_headers))
 		{
 			$headers = array();
 			foreach ($http_headers as $name => $value)
@@ -743,7 +743,7 @@ class Kohana_MMI_Curl
 			// Save the request details for debugging
 			if ($this->_debug)
 			{
-				if (is_array($params) AND count($params) > 0 AND Arr::is_assoc($params))
+				if (is_array($params) AND ! empty($params) AND Arr::is_assoc($params))
 				{
 					$params = http_build_query($params);
 				}
